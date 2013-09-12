@@ -34,11 +34,12 @@ Here is some basic information using modified pyGTrend.py
 example using City to cache search terms
 
 	connector = pyGTrends( google_username, google_password )
-	connector.download_report( ( search_query ) 
-
-			   , date = date
-                           , geo = geo
-                           , scale = scale )
+	connector.download_report( 
+			  		( search_query ) 
+					, date = date
+                        		, geo = geo
+                        		, scale = scale 
+				 )
 
 A simple method for writing out the entire entry grabbed from the web
     
