@@ -4,11 +4,10 @@
 
 ********************************************************************************
 
-This is a simple Python Google Trends API that works through parsing the csv file.
+All credits to the original designer, Sal Uryasev. This is a simple Python Google Trends API that works through parsing the csv file.
 The main feature here is the authentication into Google.
 
-Instructions for use can be found here:
-http://www.juiceanalytics.com/openjuice/programmatic-google-trends-api/
+Instructions for use can be found at http://www.juiceanalytics.com/openjuice/programmatic-google-trends-api/
 
 
 
