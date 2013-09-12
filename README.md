@@ -32,19 +32,22 @@ in with specific format for use in time series analysis.
 ********************************************************************************
 Here is some basic information using modified pyGTrend.py
 example using City to cache search terms
-    connector = pyGTrends( google_username, google_password )
-    connector.download_report( ( search_query ) 
+
+	connector = pyGTrends( google_username, google_password )
+	connector.download_report( ( search_query ) 
 			   , date = date
                            , geo = geo
                            , scale = scale )
 
 A simple method for writing out the entire entry grabbed from the web
-    connector.writer( "search_query_name.csv" )
+    
+	connector.writer( "search_query_name.csv" )
 
 Else sections can be grabbed and found, the Main section is the time series
 data where the Week,Days,Month headers lie.
-    data = connector.csv( section='Main' ).split('\n')
-    csv_reader = csv.reader( data )
+
+	data = connector.csv( section='Main' ).split('\n')
+	csv_reader = csv.reader( data )
 
 
 A more detailed example where we output only the "Main" section from the trend result is found
@@ -54,7 +57,8 @@ then begin downloading from the list that is specified. In order to parse this m
 to other programmes the "start" or "end" date is chosen to represent the whoe week.
 
 run via the following command
-    ./download.py
+
+	./download.py
 
 
 So until Google decide to change the format once again... Happy trending people!!
