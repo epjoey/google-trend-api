@@ -4,11 +4,10 @@
 
 ********************************************************************************
 
-This is a simple Python Google Trends API that works through parsing the csv file.
+All credits to the original designer, Sal Uryasev. This is a simple Python Google Trends API that works through parsing the csv file.
 The main feature here is the authentication into Google.
 
-Instructions for use can be found here:
-http://www.juiceanalytics.com/openjuice/programmatic-google-trends-api/
+Instructions for use can be found at http://www.juiceanalytics.com/openjuice/programmatic-google-trends-api/
 
 
 
@@ -34,17 +33,21 @@ Here is some basic information using modified pyGTrend.py
 example using City to cache search terms
 
 	connector = pyGTrends( google_username, google_password )
-	connector.download_report( ( search_query ) 
-			   , date = date
-                           , geo = geo
-                           , scale = scale )
+	connector.download_report( 
+			  		( search_query )
+					, date = date
+                        		, geo = geo
+                        		, scale = scale
+				 )
 
 A simple method for writing out the entire entry grabbed from the web
     
 	connector.writer( "search_query_name.csv" )
 
-Else sections can be grabbed and found, the Main section is the time series
-data where the Week,Days,Month headers lie.
+Since the Google Trend data comes in "sections", the code allows one to get different
+regions, Main, City and Subregion. The Main section is the time series data where the 
+Weeks, Days, Month headers are found. This is often what we use so there is a dedicated
+script to dead with grabbing and formatting this.
 
 	data = connector.csv( section='Main' ).split('\n')
 	csv_reader = csv.reader( data )
