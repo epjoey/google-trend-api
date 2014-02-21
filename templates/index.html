@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+</head>
+    <body>
+        <h1> d3 playground! </h1>
+    </body>
+<script>
+ // add your script here
+
+    var terms = [
+        { name: 'aids', color: 'red' },
+        { name: 'drought', color: 'black' },
+        { name: 'obama', color: 'blue' }
+    ];
+    var width = 800;
+    var height = 400;
+
+    var svg = d3.select("body").append("svg"),
+        csv = d3.csv('report.csv', function(error, data) {
+            var dates = data.map(function(row) { 
+                var date = row['Week'].split(" - ")[1],
+                    format = d3.time.format("%Y-%m-%d");
+                return format.parse(date);
+            });
+            
+            var xScale = d3.time.scale()
+                //.domain([0,100])
+                .domain(d3.extent(dates))
+                .range([0, width]);
+            
+            var xAxis = d3.svg.axis()
+                .scale(xScale)
+                .orient('bottom');
+            
+            svg.append('g')
+                .attr("transform", "translate(0," + height + ")")
+                .call(xAxis);
+
+            
+            var yScale = d3.scale.linear()
+                .domain([0, 100])
+                .range([height, 0]);
+            
+            var yAxis = d3.svg.axis()
+                .scale(yScale)
+                .orient('left');
+            
+            svg.append('g').call(yAxis);
+
+            var dots = svg.selectAll('circle')
+                .data(data)
+                .enter();
+            
+            terms.forEach(function(term) {
+                dots.append('circle')
+                    .attr('r', '6px')
+                    .attr('cx', function(d, i) {
+                        return xScale(dates[i]);
+                    })
+                    .attr('cy', function(d) {
+                        return yScale(d[term.name]);
+                    })
+                    .attr('fill', term.color)
+                    .attr('opacity', '.5');
+            });
+
+        });
+
+    // var placeDots = function(selection) {
+
+    // }
+
+</script>
+<style>
+    svg {
+        border:1px solid black; padding:40px; height:600px;
+    }
+    .dot-obama { background:blue; }
+    .dot-aids { background:red; }
+</style>
+</html>
